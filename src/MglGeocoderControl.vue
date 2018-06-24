@@ -3,18 +3,79 @@
 <script>
   import { mglBaseMixin, mglControlMixin } from 'vue-mapbox'
 
+  const geocoderEvents = {
+    loading: 'loading',
+    results: 'results',
+    result: 'result',
+    error: 'error'
+  }
+
   export default {
     name: 'GeocoderControl',
     mixins: [mglBaseMixin, mglControlMixin],
 
     props: {
+      // Mapbox-geocoder options
       accessToken: {
+        type: String,
+        required: true
+      },
+      zoom: {
+        type: Number,
+        default: 16
+      },
+      flyTo: {
+        type: Boolean,
+        default: true
+      },
+      placeholder: {
+        type: String,
+        default: 'Search'
+      },
+      proximity: {
+        type: Object,
+        default: null
+      },
+      trackProximity: {
+        type: Boolean,
+        default: false
+      },
+      bbox: {
+        type: Array,
+        default: null
+      },
+      types: {
         type: String,
         default: null
       },
-      position: {
+      country: {
         type: String,
-        default: 'top-right'
+        default: null
+      },
+      minLength: {
+        type: Number,
+        default: 2
+      },
+      limit: {
+        type: Number,
+        default: 5
+      },
+      language: {
+        type: String,
+        default: null
+      },
+      filter: {
+        type: Function,
+        default: null
+      },
+      localGeocoder: {
+        type: Function,
+        default: null
+      },
+      // Component options
+      input: {
+        type: String,
+        default: null
       }
     },
 
@@ -24,26 +85,53 @@
       }
     },
 
+    watch: {
+      input: {
+        handler(next, prev) {
+          if (this.control && next !== prev) {
+            this.control.setInput(next)
+          }
+        },
+        immediate: true
+      },
+      proximity(next, prev) {
+        if (this.control && next !== prev) {
+          this.control.setProximity(next)
+        }
+      }
+    },
+
     created() {
       if (this.accessToken) this.mapbox.accessToken = this.accessToken
       const Geocoder = this.mapboxGeocoder
       this.control = new Geocoder(this._props)
-
-      this.control.on('error', error => {
-        this.$_emitMapEvent('geocoder-error', { error })
-      })
-      this.control.on('result', event => {
-        this.$_emitMapEvent('geocoder-result', { event })
-      })
     },
 
     methods: {
       $_deferredMount(payload) {
         this.map = payload.map
-        console.log('MOUNTING!', this.map)
         this.map.addControl(this.control)
-        this.$emit('added', this.control)
+        if (this.input) {
+          this.control.setInput(this.input)
+        }
+        this.$_emitMapEvent('added', { geocoder: this.control })
+        if (this.$options._parentListeners) {
+          const eventNames = Object.keys(geocoderEvents)
+          const eventsToListen = Object.keys(this.$options._parentListeners)
+            .filter(eventName =>
+              eventNames.indexOf(eventName) !== -1
+            )
+          this.$_bindSelfEvents(eventsToListen, this.control)
+        }
         payload.component.$off('load', this.$_deferredMount)
+      },
+
+      query(query) {
+        if (this.control) {
+          this.$emit('update:input', query)
+          return this.contol.query(query)
+        }
+        return null
       }
     }
   }
