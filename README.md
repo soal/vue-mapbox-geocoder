@@ -91,4 +91,4 @@ Each time you change value of this prop, mapbox-gl-geocoder `.setInput` method i
 
 Same for `proximity` prop that internally invokes mapbox-gl-geocoder `setProximity` method.
 
-Also you can call `query` method to query search and get results programmaticaly
+Also you can call `query` method to query search and get results programmatically.
