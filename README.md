@@ -6,10 +6,10 @@
 
 First of all you need to install Mapbox GL and Vue-mapbox. [See vue-mapbox doc](https://soal.github.io/vue-mapbox/#/quickstart)
 
-Install mabbox-gl-geocoder:
+Install mabbox-gl-geocoder and vue-mapbox-geocoder:
 
 ```bash
-npm i @mapbox/mapbox-gl-geocoder
+npm i @mapbox/mapbox-gl-geocoder vue-mapbox-geocoder
 ```
 
 Then, on plugin registration you need to add plugins option:

@@ -17,7 +17,7 @@
   "license": "MIT",
   "private": false,
   "bugs": {
-    "url": "https://github.com/soal/vue-mapbox/issues"
+    "url": "https://github.com/soal/vue-mapbox-geocoder/issues"
   },
   "homepage": "https://soal.github.io/vue-mapbox",
   "jest": {
