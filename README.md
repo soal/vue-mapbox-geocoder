@@ -2,13 +2,14 @@
 
 [Vue-mapbox](https://github.com/soal/vue-mapbox) plugin for [mapbox-gl-geocoder](https://github.com/mapbox/mapbox-gl-geocoder) support.
 
-
 ## Usage
+
 First of all you need to install Mapbox GL and Vue-mapbox. [See vue-mapbox doc](https://soal.github.io/vue-mapbox/#/quickstart)
 
-After, obviosly, you need to install mabbox-gl-geocoder:
+Install mabbox-gl-geocoder:
 
 ```bash
+npm i @mapbox/mapbox-gl-geocoder
 ```
 
 Then, on plugin registration you need to add plugins option:
@@ -19,7 +20,7 @@ import VueMapbox from 'vue-mapbox'
 import Mapbox from 'mapbox-gl'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
-Vue.use(VueMapbox, { 
+Vue.use(VueMapbox, {
   mapboxgl: Mapbox,
   plugins: [{ mapboxGeocoder: MapboxGeocoder }] // Notice plugins property
 })
@@ -42,6 +43,7 @@ Now you can add geocoder control like other controls:
     <mgl-geolocate-control position="top-right" />
     <mgl-geocoder-control
       :accessToken="accessToken"
+      :input.sync="defaultInput"
       @results="handleSearch"
     />
   </mgl-map>
@@ -68,7 +70,8 @@ export default {
   data() {
     return {
       accessToken: 'some_token',
-      mapStyle: 'some_style'
+      mapStyle: 'some_style',
+      defaultInput: 'Bodhgaya'
     }
   },
   methods: {
@@ -79,3 +82,13 @@ export default {
 }
 </script>
 ```
+
+Options for mapbox-gl-geocoder described [here](https://github.com/mapbox/mapbox-gl-geocoder/blob/master/API.md) can be passed via props.
+
+Additionaly you can pass syncronized prop `input` as in example below.
+It will be passed to mapbox-gl-geocoder as default input value.
+Each time you change value of this prop, mapbox-gl-geocoder `.setInput` method is called.
+
+Same for `proximity` prop that internally invokes mapbox-gl-geocoder `setProximity` method.
+
+Also you can call `query` method to query search and get results programmaticaly
