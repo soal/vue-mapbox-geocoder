@@ -81,7 +81,8 @@
 
     data() {
       return {
-        control: null
+        control: null,
+        initial: true
       }
     },
 
@@ -105,6 +106,11 @@
       if (this.accessToken) this.mapbox.accessToken = this.accessToken
       const Geocoder = this.mapboxGeocoder
       this.control = new Geocoder(this._props)
+      this.control.on('results', this.$_updateInput)
+    },
+
+    beforeDestroy() {
+      this.control.off('results', this.$_updateInput)
     },
 
     methods: {
@@ -124,6 +130,14 @@
           this.$_bindSelfEvents(eventsToListen, this.control)
         }
         payload.component.$off('load', this.$_deferredMount)
+        this.initial = false
+      },
+
+      $_updateInput(results) {
+        if (!this.initial) {
+          const input = results.query ? results.query.join('') : ''
+          this.$emit('update:input', input)
+        }
       },
 
       query(query) {
