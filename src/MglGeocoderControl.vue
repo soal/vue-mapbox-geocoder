@@ -135,7 +135,7 @@
 
       $_updateInput(results) {
         if (!this.initial) {
-          const input = results.query ? results.query.join('') : ''
+          const input = results.query || ''
           this.$emit('update:input', input)
         }
       },
@@ -143,7 +143,7 @@
       query(query) {
         if (this.control) {
           this.$emit('update:input', query)
-          return this.contol.query(query)
+          return this.control.query(query)
         }
         return null
       }
