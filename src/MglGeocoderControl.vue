@@ -135,7 +135,7 @@
 
       $_updateInput(results) {
         if (!this.initial) {
-          const input = results.query || ''
+          const input = results.query ? results.query.join('') : ''
           this.$emit('update:input', input)
         }
       },
