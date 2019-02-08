@@ -1,7 +1,7 @@
 <template></template>
 
 <script>
-  import { mglBaseMixin, mglControlMixin } from 'vue-mapbox'
+  import { mglPluginMixin, mglControlMixin } from 'vue-mapbox'
 
   const geocoderEvents = {
     loading: 'loading',
