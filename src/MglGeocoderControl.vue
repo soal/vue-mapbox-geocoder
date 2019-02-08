@@ -12,7 +12,7 @@
 
   export default {
     name: 'GeocoderControl',
-    mixins: [mglBaseMixin, mglControlMixin],
+    mixins: [mglPluginMixin, mglControlMixin],
 
     props: {
       // Mapbox-geocoder options
