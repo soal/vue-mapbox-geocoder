@@ -1,7 +1,7 @@
 <template></template>
 
 <script>
-  import { mglBaseMixin, mglControlMixin } from 'vue-mapbox'
+  import { mglPluginMixin, mglControlMixin } from 'vue-mapbox'
 
   const geocoderEvents = {
     loading: 'loading',
@@ -12,7 +12,7 @@
 
   export default {
     name: 'GeocoderControl',
-    mixins: [mglBaseMixin, mglControlMixin],
+    mixins: [mglPluginMixin, mglControlMixin],
 
     props: {
       // Mapbox-geocoder options
@@ -135,7 +135,7 @@
 
       $_updateInput(results) {
         if (!this.initial) {
-          const input = results.query ? results.query.join('') : ''
+          const input = results.query ? results.query.join(' ') : ''
           this.$emit('update:input', input)
         }
       },
@@ -143,7 +143,7 @@
       query(query) {
         if (this.control) {
           this.$emit('update:input', query)
-          return this.contol.query(query)
+          return this.control.query(query)
         }
         return null
       }
