@@ -82,7 +82,6 @@ export default {
 
   data() {
     return {
-      control: null,
       initial: true
     };
   },
@@ -104,6 +103,7 @@ export default {
   },
 
   created() {
+    this.control = null;
     if (this.accessToken && !this.mapbox.accessToken) {
       this.mapbox.accessToken = this.accessToken;
     }
@@ -132,14 +132,13 @@ export default {
       const vm = this;
       Object.keys(this.$listeners).forEach(eventName => {
         if (events.includes(eventName)) {
-          this.control.on(eventName, eventData => {
-            return vm.$_emitSelfEvent(
-              { type: eventName },
-              { geocoderData: eventData }
-            );
-          });
+          this.control.on(eventName, vm.$_emitControlEvent.bind(vm, eventName));
         }
       });
+    },
+
+    $_emitControlEvent(eventName, eventData) {
+      return this.$_emitSelfEvent({ type: eventName }, eventData);
     },
 
     $_updateInput(results) {
