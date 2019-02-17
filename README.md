@@ -39,9 +39,8 @@ Now you can add geocoder control like other controls:
     :accessToken="accessToken"
     :mapStyle.sync="mapStyle"
   >
-    <mgl-navigation-control position="top-right"/>
-    <mgl-geolocate-control position="top-right" />
     <mgl-geocoder-control
+      <-- props needed for GeolocateControl -->
       :accessToken="accessToken"
       :input.sync="defaultInput"
       @results="handleSearch"
@@ -63,14 +62,12 @@ export default {
 
   components: {
     MglMap,
-    MglNavigationControl,
-    MglGeolocateControl,
     MglGeocoderControl
   },
   data() {
     return {
-      accessToken: 'some_token',
-      mapStyle: 'some_style',
+      accessToken: 'YOUR_ACCESS_TOKEN',
+      mapStyle: 'YOUR_MAP_STYLE',
       defaultInput: 'Bodhgaya'
     }
   },

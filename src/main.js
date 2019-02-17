@@ -1,3 +1,3 @@
-import MglGeocoderControl from './MglGeocoderControl.vue'
+import GeocoderControl from "./GeocoderControl";
 
-export default MglGeocoderControl
+export default GeocoderControl;
