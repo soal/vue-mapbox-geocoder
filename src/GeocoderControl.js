@@ -1,6 +1,8 @@
-import { mglControlMixin } from "vue-mapbox";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import { $helpers } from "vue-mapbox";
 
 const geocoderEvents = {
+  clear: "clear",
   loading: "loading",
   results: "results",
   result: "result",
@@ -9,7 +11,7 @@ const geocoderEvents = {
 
 export default {
   name: "GeocoderControl",
-  mixins: [mglControlMixin],
+  mixins: [$helpers.asControl],
 
   inject: ["mapbox", "map"],
 
@@ -102,13 +104,13 @@ export default {
   },
 
   created() {
-    if (this.accessToken && !this.mapbox.accessToken)
+    if (this.accessToken && !this.mapbox.accessToken) {
       this.mapbox.accessToken = this.accessToken;
-    const Geocoder = this.mapboxGeocoder;
-    console.log(this.$props);
-    this.control = new Geocoder(this.$props);
-    console.log("CONTROL: ", this.control);
+    }
+    this.control = new MapboxGeocoder(this.$props);
     this.control.on("results", this.$_updateInput);
+
+    this.$_deferredMount();
   },
 
   beforeDestroy() {
@@ -116,29 +118,28 @@ export default {
   },
 
   methods: {
-    $_deferredMount(payload) {
-      this.map = payload.map;
+    $_deferredMount() {
       this.map.addControl(this.control);
       if (this.input) {
         this.control.setInput(this.input);
       }
       this.$_emitEvent("added", { geocoder: this.control });
-      // if (this.$options._parentListeners) {
-      //   const eventNames = Object.keys(geocoderEvents)
-      //   const eventsToListen = Object.keys(this.$options._parentListeners)
-      //     .filter(eventName =>
-      //       eventNames.indexOf(eventName) !== -1
-      //     )
-      //   this.$_bindSelfEvents(eventsToListen, this.control)
-      // }
-      // Object.keys(this.$listeners).forEach(eventName => {
-      //   if (geocoderEvents.includes(eventName)) {
-      //     this.map.on(eventName, this.layerId, this.$_emitLayerMapEvent);
-      //   }
-      // });
-      this.$_bindSelfEvents(geocoderEvents, this.control);
-      payload.component.$off("load", this.$_deferredMount);
+      this.$_bindSelfEvents(Object.keys(geocoderEvents));
       this.initial = false;
+    },
+
+    $_bindSelfEvents(events) {
+      const vm = this;
+      Object.keys(this.$listeners).forEach(eventName => {
+        if (events.includes(eventName)) {
+          this.control.on(eventName, eventData => {
+            return vm.$_emitSelfEvent(
+              { type: eventName },
+              { geocoderData: eventData }
+            );
+          });
+        }
+      });
     },
 
     $_updateInput(results) {
