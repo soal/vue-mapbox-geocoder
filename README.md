@@ -9,43 +9,24 @@ First of all you need to install Mapbox GL and Vue-mapbox. [See vue-mapbox doc](
 Install mabbox-gl-geocoder and vue-mapbox-geocoder:
 
 ```bash
-npm i @mapbox/mapbox-gl-geocoder vue-mapbox-geocoder
-```
-
-Then, on plugin registration you need to add plugins option:
-
-```javascript
-import Vue from 'vue'
-import VueMapbox from 'vue-mapbox'
-import Mapbox from 'mapbox-gl'
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
-
-Vue.use(VueMapbox, {
-  mapboxgl: Mapbox,
-  plugins: [{ mapboxGeocoder: MapboxGeocoder }] // Notice plugins property
-})
-
-new Vue({
-  el: '#app',
-  render: h => h(require('./App'))
-})
+npm i @mapbox/mapbox-gl-geocoder vue-mapbox vue-mapbox-geocoder
 ```
 
 Now you can add geocoder control like other controls:
 
 ```vue
 <template>
-  <mgl-map
+  <MglMap
     :accessToken="accessToken"
-    :mapStyle.sync="mapStyle"
+    :mapStyle="mapStyle"
   >
-    <mgl-geocoder-control
+    <MglGeocoderControl
       <-- props needed for GeolocateControl -->
       :accessToken="accessToken"
       :input.sync="defaultInput"
       @results="handleSearch"
     />
-  </mgl-map>
+  </MglMap>
 </template>
 
 <script>
