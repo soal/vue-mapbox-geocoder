@@ -16,6 +16,10 @@ export default {
   inject: ["mapbox", "map"],
 
   props: {
+    position: {
+      type: String,
+      default: "top-right"
+    },
     // Mapbox-geocoder options
     accessToken: {
       type: String,
@@ -119,7 +123,7 @@ export default {
 
   methods: {
     $_deferredMount() {
-      this.map.addControl(this.control);
+      this.map.addControl(this.control, this.position);
       if (this.input) {
         this.control.setInput(this.input);
       }
