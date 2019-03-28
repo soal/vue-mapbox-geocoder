@@ -6,7 +6,7 @@
 
 First of all you need to install Mapbox GL and Vue-mapbox. [See vue-mapbox doc](https://soal.github.io/vue-mapbox/#/quickstart)
 
-Install mabbox-gl-geocoder and vue-mapbox-geocoder:
+Install mapbox-gl-geocoder and vue-mapbox-geocoder:
 
 ```bash
 npm i @mapbox/mapbox-gl-geocoder vue-mapbox vue-mapbox-geocoder
