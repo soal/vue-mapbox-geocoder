@@ -2001,7 +2001,7 @@ var geocoderEvents = {
       type: Function,
       default: null
     },
-    mapboxgl: {
+    mapboxGl: {
       type: Object,
       default: null
     },
