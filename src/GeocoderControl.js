@@ -77,7 +77,7 @@ export default {
       type: Function,
       default: null
     },
-    mapboxGl: {
+    mapboxgl: {
       type: Object,
       default: null
     },
