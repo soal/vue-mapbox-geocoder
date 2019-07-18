@@ -35,6 +35,7 @@ import {
   MglNavigationControl,
   MglGeolocateControl
 } from 'vue-mapbox'
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 
 import MglGeocoderControl from 'vue-mapbox-geocoder'
 
