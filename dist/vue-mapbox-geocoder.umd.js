@@ -2077,7 +2077,7 @@ var geocoderEvents = {
     },
     $_updateInput: function $_updateInput(results) {
       if (!this.initial) {
-        var input = results.query ? results.query.join("") : "";
+        var input = results.query ? results.query.join(" ") : "";
         this.$emit("update:input", input);
       }
     },
