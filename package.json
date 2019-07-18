@@ -1,6 +1,6 @@
 {
   "name": "vue-mapbox-geocoder",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Geocoder plugin for VueMapbox",
   "homepage": "https://github.com/soal/vue-mapbox-geocoder#readme",
   "repository": {
