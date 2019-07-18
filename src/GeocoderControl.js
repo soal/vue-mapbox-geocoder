@@ -77,9 +77,9 @@ export default {
       type: Function,
       default: null
     },
-    mapboxgl: {
+    mapboxGl: {
       type: Object,
-      default: null,
+      default: null
     },
     // Component options
     input: {
