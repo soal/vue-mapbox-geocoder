@@ -1602,7 +1602,7 @@ var geocoderEvents = {
     query: function query(_query) {
       if (this.control) {
         this.$emit("update:input", _query);
-        return this.contol.query(_query);
+        return this.control.query(_query);
       }
 
       return null;
