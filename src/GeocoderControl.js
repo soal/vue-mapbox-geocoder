@@ -21,6 +21,10 @@ export default {
       type: String,
       required: true
     },
+    position: {
+      type: String,
+      default: "top-right"
+    },
     zoom: {
       type: Number,
       default: 16
@@ -73,6 +77,10 @@ export default {
       type: Function,
       default: null
     },
+    mapboxgl: {
+      type: Object,
+      default: null,
+    },
     // Component options
     input: {
       type: String,
@@ -119,7 +127,7 @@ export default {
 
   methods: {
     $_deferredMount() {
-      this.map.addControl(this.control);
+      this.map.addControl(this.control, this.position);
       if (this.input) {
         this.control.setInput(this.input);
       }
