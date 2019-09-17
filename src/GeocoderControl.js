@@ -81,6 +81,10 @@ export default {
       type: Object,
       default: null
     },
+    marker: {
+      type: [Boolean, Object],
+      default: true
+    },
     // Component options
     input: {
       type: String,
