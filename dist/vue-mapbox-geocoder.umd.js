@@ -1541,8 +1541,8 @@ var geocoderEvents = {
   },
   watch: {
     input: {
-      handler: function handler(next, prev) {
-        if (this.control && next !== prev) {
+      handler: function handler(next) {
+        if (this.control && next) {
           this.control.setInput(next);
         }
       },
