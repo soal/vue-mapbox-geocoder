@@ -120,13 +120,8 @@ export default {
       this.mapbox.accessToken = this.accessToken;
     }
     this.control = new MapboxGeocoder(this.$props);
-    this.control.on("results", this.$_updateInput);
 
     this.$_deferredMount();
-  },
-
-  beforeDestroy() {
-    this.control.off("results", this.$_updateInput);
   },
 
   methods: {
@@ -151,13 +146,6 @@ export default {
 
     $_emitControlEvent(eventName, eventData) {
       return this.$_emitSelfEvent({ type: eventName }, eventData);
-    },
-
-    $_updateInput(results) {
-      if (!this.initial) {
-        const input = results.query ? results.query.join(" ") : "";
-        this.$emit("update:input", input);
-      }
     },
 
     query(query) {
