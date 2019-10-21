@@ -1553,11 +1553,7 @@ var geocoderEvents = {
     }
 
     this.control = new mapbox_gl_geocoder_root_mapbox_gl_geocoder_default.a(this.$props);
-    this.control.on("results", this.$_updateInput);
     this.$_deferredMount();
-  },
-  beforeDestroy: function beforeDestroy() {
-    this.control.off("results", this.$_updateInput);
   },
   methods: {
     $_deferredMount: function $_deferredMount() {
@@ -1587,12 +1583,6 @@ var geocoderEvents = {
       return this.$_emitSelfEvent({
         type: eventName
       }, eventData);
-    },
-    $_updateInput: function $_updateInput(results) {
-      if (!this.initial) {
-        var input = results.query ? results.query.join(" ") : "";
-        this.$emit("update:input", input);
-      }
     },
     query: function query(_query) {
       if (this.control) {
