@@ -21,56 +21,8 @@ export default {
       type: String,
       required: true
     },
-    zoom: {
-      type: Number,
-      default: 16
-    },
-    flyTo: {
-      type: Boolean,
-      default: true
-    },
-    placeholder: {
-      type: String,
-      default: "Search"
-    },
     proximity: {
       type: Object,
-      default: null
-    },
-    trackProximity: {
-      type: Boolean,
-      default: false
-    },
-    bbox: {
-      type: Array,
-      default: null
-    },
-    types: {
-      type: String,
-      default: null
-    },
-    country: {
-      type: String,
-      default: null
-    },
-    minLength: {
-      type: Number,
-      default: 2
-    },
-    limit: {
-      type: Number,
-      default: 5
-    },
-    language: {
-      type: String,
-      default: null
-    },
-    filter: {
-      type: Function,
-      default: null
-    },
-    localGeocoder: {
-      type: Function,
       default: null
     },
     // Component options
@@ -107,7 +59,13 @@ export default {
     if (this.accessToken && !this.mapbox.accessToken) {
       this.mapbox.accessToken = this.accessToken;
     }
-    this.control = new MapboxGeocoder(this.$props);
+
+    this.control = new MapboxGeocoder({
+      ...this.$attrs,
+      proximity: this.proximity,
+      accessToken: this.accessToken,
+    });
+
     this.control.on("results", this.$_updateInput);
 
     this.$_deferredMount();
