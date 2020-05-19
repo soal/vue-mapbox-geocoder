@@ -1,5 +1,5 @@
 {
-  "name": "@gesopoc/v-mapbox-geocoder",
+  "name": "@geospoc/v-mapbox-geocoder",
   "version": "0.1.0",
   "description": "Geocoder plugin for VueMapbox",
   "repository": {
@@ -18,6 +18,9 @@
       "url": "https://vinayakkulkarni.dev"
     }
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "MIT",
   "private": false,
   "main": "dist/v-mapbox-geocoder.cjs.js",
@@ -28,9 +31,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "npm run bundle && npm run bundle:min",
     "bundle": "rollup -c build/rollup.config.js",
@@ -80,6 +80,9 @@
     "mapbox-gl",
     "mapbox-gl-geocoder"
   ],
+  "engines": {
+    "node": ">=10.20.0"
+  },
   "bugs": {
     "url": "https://github.com/geospoc/v-mapbox-geocoder/issues"
   },
