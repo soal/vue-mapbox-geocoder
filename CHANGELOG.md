@@ -1,3 +1,8 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/geospoc/v-mapbox-geocoder/compare/0.2.0...0.1.1) (2020-05-19)
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/geospoc/v-mapbox-geocoder/compare/0.2.0...0.1.0) (2020-05-19)
 
