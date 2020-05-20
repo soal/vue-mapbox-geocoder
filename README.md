@@ -23,6 +23,8 @@ Now you can add geocoder control like other controls:
     <MglGeocoderControl
       :accessToken="accessToken"
       :input.sync="defaultInput"
+      container="geocoder_container_id"
+      position="top-left"
       @results="handleSearch"
     />
   </MglMap>
