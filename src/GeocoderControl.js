@@ -151,7 +151,7 @@ export default {
     query(query) {
       if (this.control) {
         this.$emit('update:input', query);
-        return this.contol.query(query);
+        return this.control.query(query);
       }
       return null;
     },
