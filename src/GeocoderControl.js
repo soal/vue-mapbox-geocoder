@@ -78,6 +78,10 @@ export default {
       type: String,
       default: null,
     },
+    mapboxgl: {
+      type: Object,
+      default: null,
+    },
   },
 
   data() {
