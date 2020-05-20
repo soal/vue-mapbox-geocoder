@@ -31,6 +31,9 @@ Now you can add geocoder control like other controls:
 <script>
   import { MglMap } from 'vue-mapbox';
   import MglGeocoderControl from '@geospoc/v-mapbox-geocoder';
+  // you can also import this in your main.js or nuxt.config.js
+  // or even main/global (s)css file
+  import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 
   export default {
     name: 'App',
