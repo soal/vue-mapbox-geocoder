@@ -143,7 +143,7 @@ export default {
 
     $_updateInput(results) {
       if (!this.initial) {
-        const input = results.query ? results.query.join('') : '';
+        const input = results.query ? results.query.join(' ') : ' ';
         this.$emit('update:input', input);
       }
     },
@@ -151,7 +151,7 @@ export default {
     query(query) {
       if (this.control) {
         this.$emit('update:input', query);
-        return this.contol.query(query);
+        return this.control.query(query);
       }
       return null;
     },
