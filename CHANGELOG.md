@@ -1,3 +1,21 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/geospoc/v-mapbox-geocoder/compare/v0.1.1...v0.2.0) (2020-05-20)
+
+
+### Bug Fixes
+
+* no mapboxgl detected issue ([06ef6b6](https://github.com/geospoc/v-mapbox-geocoder/commit/06ef6b6))
+* stop squishing results after updating input ([309c8fd](https://github.com/geospoc/v-mapbox-geocoder/commit/309c8fd))
+* typo issue ([d0d23f8](https://github.com/geospoc/v-mapbox-geocoder/commit/d0d23f8))
+
+
+### Features
+
+* add badges ([84c0fde](https://github.com/geospoc/v-mapbox-geocoder/commit/84c0fde))
+* add geocoder based on custom container_id ([ee218c9](https://github.com/geospoc/v-mapbox-geocoder/commit/ee218c9))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/geospoc/v-mapbox-geocoder/compare/0.2.0...0.1.1) (2020-05-19)
 
