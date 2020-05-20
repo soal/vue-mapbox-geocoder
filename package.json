@@ -1,19 +1,76 @@
 {
-  "name": "vue-mapbox-geocoder",
+  "name": "@geospoc/v-mapbox-geocoder",
   "version": "0.2.0",
   "description": "Geocoder plugin for VueMapbox",
-  "homepage": "https://github.com/soal/vue-mapbox-geocoder#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soal/vue-mapbox-geocoder.git"
+    "url": "git@github.com:geospoc/v-mapbox-geocoder.git"
   },
   "author": {
-    "name": "soal",
-    "email": "sorrrow.about.alice@gmail.com",
-    "url": "https://github.com/soal"
+    "name": "GeoSpoc",
+    "email": "developers@geospoc.com",
+    "url": "https://geospoc.com"
   },
-  "bugs": {
-    "url": "https://github.com/soal/vue-mapbox-geocoder/issues"
+  "contributors": [
+    {
+      "name": "Vinayak Kulkarni",
+      "email": "inbox.vinayak@gmail.com",
+      "url": "https://vinayakkulkarni.dev"
+    }
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "license": "MIT",
+  "private": false,
+  "main": "dist/v-mapbox-geocoder.cjs.js",
+  "module": "dist/v-mapbox-geocoder.esm.js",
+  "unpkg": "dist/v-mapbox-geocoder.js",
+  "jsdelivr": "dist/v-mapbox-geocoder.js",
+  "cdn": "dist/v-mapbox-geocoder.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run bundle && npm run bundle:min",
+    "bundle": "rollup -c build/rollup.config.js",
+    "bundle:min": "rollup -c build/rollup.min.config.js",
+    "lint": "eslint 'src/**/*.{js,vue}'",
+    "lintfix": "eslint --fix 'src/**/*.{js,vue}'",
+    "release:prepare": "shipjs prepare",
+    "release:trigger": "shipjs trigger"
+  },
+  "peerDependencies": {
+    "mapbox-gl": "^1.10.1",
+    "vue-mapbox": "^0.4.1",
+    "@mapbox/mapbox-gl-geocoder": "^4.5.1"
+  },
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "ava": "^3.8.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-preset-vue": "^2.0.2",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "rollup": "^2.10.5",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-vue": "^5.1.7",
+    "shipjs": "^0.19.0",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
   },
   "keywords": [
     "vue",
@@ -23,41 +80,11 @@
     "mapbox-gl",
     "mapbox-gl-geocoder"
   ],
-  "main": "dist/vue-mapbox-geocoder.umd.js",
-  "module": "src/main.js",
-  "scripts": {
-    "build": "vue-cli-service build --target lib --name vue-mapbox-geocoder src/main.js",
-    "serve": "vue-cli-service build --target lib --name vue-mapbox-geocoder src/main.js --watch",
-    "lint": "vue-cli-service lint"
+  "engines": {
+    "node": ">=10.20.0"
   },
-  "peerDependencies": {
-    "vue": "^2.6.6",
-    "mapbox-gl": "^0.53.0",
-    "vue-mapbox": "^0.2.0",
-    "@mapbox/mapbox-gl-geocoder": "^3.1.1"
+  "bugs": {
+    "url": "https://github.com/geospoc/v-mapbox-geocoder/issues"
   },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-service": "^3.4.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "lint-staged": "^8.1.0",
-    "vue-template-compiler": "^2.5.21"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  }
+  "homepage": "https://github.com/geospoc/v-mapbox-geocoder#readme"
 }
