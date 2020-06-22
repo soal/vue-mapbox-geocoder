@@ -37,6 +37,7 @@
     "bundle:min": "rollup -c build/rollup.min.config.js",
     "lint": "eslint 'src/**/*.{js,vue}'",
     "lintfix": "eslint --fix 'src/**/*.{js,vue}'",
+    "prepare": "npm run build",
     "release:prepare": "shipjs prepare",
     "release:trigger": "shipjs trigger"
   },
