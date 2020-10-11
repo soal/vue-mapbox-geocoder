@@ -107,7 +107,10 @@ export default {
     if (this.accessToken && !this.mapbox.accessToken) {
       this.mapbox.accessToken = this.accessToken;
     }
-    this.control = new MapboxGeocoder(this.$props);
+    this.control = new MapboxGeocoder({
+      ...this.$props,
+      mapboxgl: this.mapbox,
+    });
     this.control.on("results", this.$_updateInput);
 
     this.$_deferredMount();
